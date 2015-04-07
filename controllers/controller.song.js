@@ -4,10 +4,12 @@ var Song = require('../models/model.song');
 function findAllSongs(req,res){
     Song.find(function(err,data){
       if (!err){
+        console.log('GET /songs')
         res.json(data);
       }
     })
 };
+
 
 // GET
 function findById(req,res){
@@ -15,6 +17,7 @@ function findById(req,res){
   console.log(id);
   Song.find({'_id':id},function(err,data){
     if(!err){
+      console.log('GET /songs/'+req.params.id);
       res.json(data)
     }else{
       res.send('el registro no existe');
@@ -26,11 +29,12 @@ function findById(req,res){
 // POST
 function newSong(req,res){
   var song = new Song(req.body);
-  song.save(function(err,data){
+  console.log('POST /songs');
+  song.save(function(err){
     if (!err){
-      res.json(data)
+      res.json(song)
     } else {
-      console.log('problemas al crear un song');
+      console.log('Error \n',err);
     }
   });
 };
@@ -39,10 +43,13 @@ function newSong(req,res){
 // PUT
 function updateSong(req,res){
   var id = req.params.id;
-  Song.update({'_id':id},{$set:req.body},function(err,data){
+  var song = req.body;
+  Song.update({'_id':id},{$set:song},function(err,data){
     if(!err){
       console.log("registro acctualizado");
-
+      res.json(song);
+    } else{
+      console.log('Error \n',err);  
     };
   });
 };
@@ -55,6 +62,8 @@ function removeSong(req,res){
     if (!err){
       res.json(data);
       console.log('registro eliminado');
+    }else{
+      console.log('Error \n',err);
     }
   });
 };
