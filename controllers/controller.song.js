@@ -13,10 +13,11 @@ function findAllSongs(req,res){
 function findById(req,res){
   var id = req.params.id;
   console.log(id);
-  Song.findById(id,function(err,data){
+  Song.find({'_id':id},function(err,data){
     if(!err){
       res.json(data)
     }else{
+      res.send('el registro no existe');
       console.log('el registro no existe')
     }
   });
@@ -38,32 +39,23 @@ function newSong(req,res){
 // PUT
 function updateSong(req,res){
   var id = req.params.id;
-  Song.findOne(id,function(err,data){
-    data = req.body;
+  Song.update({'_id':id},{$set:req.body},function(err,data){
+    if(!err){
+      console.log("registro acctualizado");
 
-    data.save(function(err,song){
-      if (!err){
-        res.json(song)
-        console.log('registro actualizado');
-      } else{
-        console.log('Error \n',err);
-      }
-    });
+    };
   });
-
 };
 
 // DELETE
 function removeSong(req,res){
   var id = req.params.id;
-  Song.findOne(id,function(err,data){
-    data.remove(function(err){
-      if (!err){
-        console.log('registro eliminado');
-      } else{
-        console.log('Error \n',err);
-      }
-    });
+  console.log(id);
+  Song.remove({'_id':id},function(err,data){
+    if (!err){
+      res.json(data);
+      console.log('registro eliminado');
+    }
   });
 };
 
