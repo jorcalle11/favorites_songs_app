@@ -1,0 +1,50 @@
+<div class="row jumbotron">
+  <h4 class="center">Modificar Canción</h4>
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s10 offset-s1">
+        <input id="title" type="text" class="validate" ng-model="editSong.title">
+        <label for="title" class="active">Title</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s10 offset-s1">
+        <input id="author" type="text" class="validate" ng-model="editSong.author">
+        <label for="author" class="active">Autor</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s10 offset-s1">
+        <input id="duration" type="text" class="validate" ng-model="editSong.duration">
+        <label for="duration" class="active">Duración</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="input-field col s10 offset-s1">Genero</label>
+      <select class="browser-default input-field col s10 offset-s1" ng-model="editSong.genre[0]" selected="editSong.genre[0]">
+        <option value="Vallenato">Vallenato</option>
+        <option value="Reggaeton">Reggaeton</option>
+        <option value="Merengue">Merengue</option>
+        <option value="Pop">Pop</option>
+        <option value="Rock">Rock</option>    
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+<!--    <div class="row">
+     <div class="input-field col s10 offset-s1">
+        <input  type="date" ng-model="editSong.date">
+      </div> 
+    </div> -->
+    <div ng-show ="error" class="center alert">
+      <strong ng-bind="error"></strong>
+    </div>
+    <br>
+    <center>
+      <button class="waves-effect waves-light btn-large" type="submit" name="action" ng-click="update()">Actualizar
+      <i class="mdi-content-send right"></i>
+      </button>
+    </center>
+    <br>
+  </form>
+</div> 

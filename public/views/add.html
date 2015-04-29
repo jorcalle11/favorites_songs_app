@@ -1,0 +1,51 @@
+<div class="row jumbotron">
+  <h4 class="center">Agregar Canción</h4>
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s10 offset-s1">
+        <input id="title" type="text" class="validate" ng-model="newSong.title">
+        <label for="title">Titulo</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s10 offset-s1">
+        <input id="author" type="text" class="validate" ng-model="newSong.author">
+        <label for="author">Autor</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s10 offset-s1">
+        <input id="duration" type="text" class="validate" ng-model="newSong.duration">
+        <label for="duration">Duración</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="input-field col s10 offset-s1">Genero</label>
+      <select class="browser-default input-field col s10 offset-s1" ng-model="newSong.genre">
+        <option value="Vallenato"selected>Vallenato</option>
+        <option value="Reggaeton">Reggaeton</option>
+        <option value="Merengue">Merengue</option>
+        <option value="Pop">Pop</option>
+        <option value="Rock">Rock</option>    
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+    <div class="row">
+     <div class="input-field col s10 offset-s1">
+        <input  type="date" ng-model="newSong.date">
+      </div> 
+    </div>
+    <div ng-show ="error" class="center alert">
+      <strong ng-bind="error"></strong>
+    </div>
+    <br>
+    <center>
+      <button class="waves-effect waves-light btn-large" type="submit" name="action" ng-click="create()">     Guardar
+      <i class="mdi-content-send right"></i>
+      </button>
+    </center>
+    <br>
+  </form>
+
+</div> 

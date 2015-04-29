@@ -1,0 +1,22 @@
+body{
+  /* azul celeste = #85D6D6 */
+  background-color: #EFF2E7;
+}
+
+.jumbotron{
+  margin-top: 30px;
+  background-color: white;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.alert{
+  background-color: #F2DEDE;
+  border-radius: 4px;
+  color:#A94442;
+  height: 50px;
+  padding-top: 15px;
+}
+
+

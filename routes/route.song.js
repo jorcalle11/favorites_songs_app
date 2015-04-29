@@ -6,8 +6,10 @@ module.exports = function (app){
             .post(controller.create)
             .get(controller.read);
 
-  app.route('/songs/:id')
+  app.route('/song/:id')
             .get(controller.findById)
             .put(controller.update)
             .delete(controller.remove);
+
+  app.get('*',controller.index);
 }

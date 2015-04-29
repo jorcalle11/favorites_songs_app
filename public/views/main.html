@@ -1,0 +1,35 @@
+<div class="row" >
+  <h4 class="center"> Lista de Canciones favoritas</h4>
+  <div class="input-field col s12" ng-show="busqueda">
+    <i class="mdi-action-search prefix"></i>
+    <input id="icon_prefix" type="text" class="validate" ng-model="search">
+  </div>
+  <table class="hoverable responsive-table">
+    <thead>
+      <tr>
+        <th data-field="id">N°</th>
+        <th data-field="title"><a href="" ng-click="ordenar('title')">Titulo</a></th>
+        <th data-field="author"><a href="" ng-click="ordenar('author')">Autor</a></th>
+        <th data-field="genre"><a href=""ng-click="ordenar('genre')">Genero</a></th>
+        <th data-field="duration"><a href="" ng-click="ordenar('duration')">Duración</a></th>
+        <th data-field="date"><a href=""ng-click="ordenar('date')">Fecha</a></th>
+        <th data-field="date">Acciones</th>    
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="song in songs | orderBy:orden | filter:search ">
+        <td>{{$index+1}}</td>
+        <td>{{song.title}}</td>
+        <td>{{song.author}}</td>
+        <td>{{song.genre[0]}}</td>
+        <td>{{song.duration}}</td>
+        <td>{{song.date | date:'mediumDate'}}</td>
+        <td>
+          <!--<a class="btn-floating green lighten-1" href="#modal1"><i class="mdi-action-visibility"></i></a>&nbsp;&nbsp; -->
+          <a class="btn-floating blue lighten-1" ng-click="update(song._id)"><i class="mdi-content-create"></i></a>&nbsp;&nbsp;
+          <a class="btn-floating red lighten-1" ng-click="remove(song._id)"><i class="mdi-action-delete"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

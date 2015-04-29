@@ -1,27 +1,37 @@
 var Song = require('../models/model.song');
+    errorHandler = require('./errors');
+
+//index
+function index(req,res){
+  res.sendFile('./public/index');
+}
 
 // GET
 function findAllSongs(req,res){
     Song.find(function(err,data){
       if (!err){
-        console.log('GET /songs')
+        console.log('GET /songs');
         res.json(data);
+      }else{
+        res.statusCode = 500;
+        console.log('Internal error(%d): %s',res.statusCode,err.message);
+        return res.send({ error: 'Server error' });
       }
-    })
+    });
 };
 
 
 // GET
 function findById(req,res){
   var id = req.params.id;
-  console.log(id);
-  Song.find({'_id':id},function(err,data){
+  Song.findById(id,function(err,data){
     if(!err){
-      console.log('GET /songs/'+req.params.id);
-      res.json(data)
+      console.log('GET /song/'+id);
+      res.json(data);
     }else{
-      res.send('el registro no existe');
-      console.log('el registro no existe')
+       return res.status(400).send({
+        message: 'No found'
+      });
     }
   });
 };
@@ -30,11 +40,14 @@ function findById(req,res){
 function newSong(req,res){
   var song = new Song(req.body);
   console.log('POST /songs');
+  //console.log(song);
   song.save(function(err){
     if (!err){
-      res.json(song)
+      res.json(song);
     } else {
-      console.log('Error \n',err);
+        return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
     }
   });
 };
@@ -46,10 +59,13 @@ function updateSong(req,res){
   var song = req.body;
   Song.update({'_id':id},{$set:song},function(err,data){
     if(!err){
-      console.log("registro acctualizado");
+      console.log('PUT /song/'+id);
+      console.log("registro actualizado");
       res.json(song);
     } else{
-      console.log('Error \n',err);  
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
     };
   });
 };
@@ -57,18 +73,21 @@ function updateSong(req,res){
 // DELETE
 function removeSong(req,res){
   var id = req.params.id;
-  console.log(id);
   Song.remove({'_id':id},function(err,data){
     if (!err){
       res.json(data);
+      console.log('DELETE /song/'+id);
       console.log('registro eliminado');
     }else{
-      console.log('Error \n',err);
+       return res.status(400).send({
+        message: 'No found'
+      });
     }
   });
 };
 
 module.exports = {
+  index: index,
   read: findAllSongs,
   create : newSong,
   update: updateSong,
