@@ -1,5 +1,4 @@
 var mongoose = require('mongoose'),
-    validate = require('mongoose-validate'),
     Schema = mongoose.Schema;
 
 var SongsSchema = new Schema({
