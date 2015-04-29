@@ -1,6 +1,9 @@
 body{
   /* azul celeste = #85D6D6 */
   background-color: #EFF2E7;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .jumbotron{
@@ -19,4 +22,6 @@ body{
   padding-top: 15px;
 }
 
-
+.main {
+    flex: 1 0 auto;
+}

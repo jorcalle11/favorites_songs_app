@@ -1,10 +1,10 @@
 <div class="row" >
   <h4 class="center"> Lista de Canciones favoritas</h4>
-  <div class="input-field col s12" ng-show="busqueda">
+  <div class="input-field col s12"  ng-show="busqueda && songs.length>0">
     <i class="mdi-action-search prefix"></i>
     <input id="icon_prefix" type="text" class="validate" ng-model="search">
   </div>
-  <table class="hoverable responsive-table">
+  <table class="hoverable responsive-table" ng-if="ocultar()">
     <thead>
       <tr>
         <th data-field="id">N°</th>
@@ -32,4 +32,7 @@
       </tr>
     </tbody>
   </table>
+  <div class="alert center" data-ng-if="!songs.length">
+    No tienes canciones agregadas ¿<a href="/#/add">Quieres agregar una</a>?
+  </div>
 </div>

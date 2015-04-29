@@ -4,6 +4,7 @@ angular.module('songsApp')
     $scope.find = function(){
       $http.get('/songs')
             .success(function(data,headers,config, status){
+              $scope.datos = true;
               $scope.songs = data;
             })
             .error(function(err){
@@ -25,7 +26,7 @@ angular.module('songsApp')
 
     $scope.update = function(id){
      $location.path('/song/'+id);
-    } 
+    };
 
     $scope.ordenar = function(valor){
       if ($scope.orden == valor){
@@ -33,5 +34,13 @@ angular.module('songsApp')
       } else {
         $scope.orden = valor;
       }
-    }
+    };
+
+    $scope.ocultar = function(){
+      if ($scope.songs.length > 0){
+        return true;
+      }
+      return false;
+    };
+
   });
