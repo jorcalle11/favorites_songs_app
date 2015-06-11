@@ -10,7 +10,6 @@ function index(req,res){
 function findAllSongs(req,res){
     Song.find(function(err,data){
       if (!err){
-        console.log('GET /songs');
         res.json(data);
       }else{
         res.statusCode = 500;
@@ -26,7 +25,6 @@ function findById(req,res){
   var id = req.params.id;
   Song.findById(id,function(err,data){
     if(!err){
-      console.log('GET /song/'+id);
       res.json(data);
     }else{
        return res.status(400).send({
@@ -39,8 +37,6 @@ function findById(req,res){
 // POST
 function newSong(req,res){
   var song = new Song(req.body);
-  console.log('POST /songs');
-  //console.log(song);
   song.save(function(err){
     if (!err){
       res.json(song);
@@ -59,7 +55,6 @@ function updateSong(req,res){
   var song = req.body;
   Song.update({'_id':id},{$set:song},function(err,data){
     if(!err){
-      console.log('PUT /song/'+id);
       console.log("registro actualizado");
       res.json(song);
     } else{
@@ -76,7 +71,6 @@ function removeSong(req,res){
   Song.remove({'_id':id},function(err,data){
     if (!err){
       res.json(data);
-      console.log('DELETE /song/'+id);
       console.log('registro eliminado');
     }else{
        return res.status(400).send({

@@ -2,6 +2,10 @@
 
 Aplicacion para realizar una lista con tus canciones favoritas
 
+##Demo 
+  
+  https://favorites-songs-app.herokuapp.com/
+
 ##Tecnologias Utilizadas
 
 * MongoDB :  https://www.mongodb.org/ 
@@ -14,10 +18,7 @@ Stack MEAN
 
 ##Iniciar Aplicacion
     $npm install
-    $node server.js
+    $node server.js 
 
-dirijase a su navegador a la dirección
+dirijase a su navegador a la dirección  
 http://localhost:4000/  
-
-
-

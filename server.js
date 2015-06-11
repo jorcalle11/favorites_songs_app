@@ -1,6 +1,7 @@
 var express = require('express'), mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     favicon = require('serve-favicon'),   
+    morgan = require('morgan'),
     path = require('path'),
     config = require('./config'),
     route = require('./routes/route.song'),
@@ -13,6 +14,7 @@ mongoose.connect(config.url, function(err){
   }   
 });
 //milddleware 
+app.use(morgan('dev'));
 app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
